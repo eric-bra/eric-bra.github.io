@@ -148,31 +148,17 @@ function dlCanvas() {
   if (canvas.toDataURL() === bCanvas) {
     alert("No photo taken!");
   } else {
-    lnk.href = canvas.toDataURL("image/png;base64");
+    let image = canvas.toDataURL();
 
-    /// create a "fake" click-event to trigger the download
-    if (document.createEvent) {
-      e = document.createEvent("MouseEvents");
-      e.initMouseEvent(
-        "click",
-        true,
-        true,
-        window,
-        0,
-        0,
-        0,
-        0,
-        0,
-        false,
-        false,
-        false,
-        false,
-        0,
-        null
-      );
+    // create temporary link
+    let tmpLink = document.createElement( 'a' );
+    tmpLink.download = 'image.png'; // set the name of the download file
+    tmpLink.href = image;
 
-      lnk.dispatchEvent(e);
-    }
+    // temporarily add link to body and initiate the download
+    document.body.appendChild( tmpLink );
+    tmpLink.click();
+    document.body.removeChild( tmpLink );
   }
 }
 document.querySelector("#dl").addEventListener("click", dlCanvas, false);
