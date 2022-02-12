@@ -170,18 +170,18 @@ togglevisibility.addEventListener(
   function () {
     // anonyme Funktion
     btn = document.querySelector("#btn_visibility");
-    camera = document.querySelector("#camera");
-    photo = document.querySelector("#photo");
+    camera = document.querySelector("#camera-frame");
+    photo = document.querySelector("#photo-frame");
 
     if (btn.innerHTML === "Show") {
       btn.innerHTML = "Hide";
       camera.style.display = "none";
-      photo.style.display = "inline-block";
+      photo.style.display = "block";
       photo.style.visibility = "visible";
     } else {
       btn.innerHTML = "Show";
       photo.style.display = "none";
-      camera.style.display = "inline-block";
+      camera.style.display = "block";
       camera.style.visibility = "visible";
     }
   },
