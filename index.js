@@ -94,6 +94,8 @@ navigator.mediaDevices
 let click_button = document.querySelector("#btn_cam");
 let canvas = document.querySelector("#photo_canvas");
 let bCanvas = canvas.toDataURL();
+let dl_button = document.querySelector("#dl");
+let show_button = document.querySelector("#btn_visibility");
 click_button.addEventListener("click", function () {
   let ctx = canvas.getContext("2d");
   canvas.width = video.getBoundingClientRect().width;
@@ -108,6 +110,8 @@ click_button.addEventListener("click", function () {
   );
   ctx.fillStyle = "red";
   ctx.fillText(place.substring(0, place.search(",")), 40, 80, video.getBoundingClientRect().width - 80);
+  show_button.disabled = false;
+  dl_button.disabled = false;
 });
 
 function dlCanvas() {
