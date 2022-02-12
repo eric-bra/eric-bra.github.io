@@ -103,6 +103,8 @@ click_button.addEventListener("click", function () {
     video,
     0,
     0,
+    video.getBoundingClientRect().width,
+    video.getBoundingClientRect().height
   );
   ctx.fillStyle = "red";
   ctx.fillText(place.substring(0, place.search(",")), 40, 80);
