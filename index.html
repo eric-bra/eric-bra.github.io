@@ -20,15 +20,15 @@
                     <p id="p_geoloc">Geolocation not available.</p>
                 </div>
             </div>
-            <div class = "outer-container">
+            <div id="camera-frame" class = "outer-container">
             <div id="camera" class="inner-container">
                 <div id="shutter_button" class="video-overlay">
                     <button id ="btn_cam">Take picture</button>
                 </div>
-                <video id="video" autoplay muted></video>
+                <video id="video" autoplay muted playsinline></video>
             </div>
             </div>
-            <div class = "outer-container">
+            <div id = "photo-frame" class = "outer-container">
                 <div id="photo" class="inner-container">
                     <canvas id="photo_canvas"></canvas>
                 </div>

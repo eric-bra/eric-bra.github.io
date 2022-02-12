@@ -77,6 +77,7 @@ let constraints = {
   video: {
     width: { ideal: 99999 },
     height: { ideal: 99999 },
+    facingMode: 'environment',
   },
 };
 navigator.mediaDevices
