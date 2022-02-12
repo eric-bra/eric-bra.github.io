@@ -1,26 +1,26 @@
 .outer-container {
-    border: 1px dotted black;
     width: 100%;
-    height: 100%;
+    max-height: 100vh;
     text-align: center;
 }
 .inner-container {
-    border: 1px solid black;
     display: inline-block;
     position: relative;
 }
 .video-overlay {
-    position: absolute;
-    right: 50%;
-    top: 85%;
-    margin: 10px;
-    padding: 5px 5px;;
+    position:absolute;
+    top:85%;
+    right:50%;
+    width:100px;
+    height:30px;
 }
 video {
+    border: 1px solid black;
     width: 100%;
     height: 100%;
 }
 canvas {
+    border: 1px solid black;
     width: 100%;
     height: 100%;
 }
@@ -32,3 +32,14 @@ h1 {
     font-family: 'Amatic SC', cursive !important;
     text-align: center;
 }
+
+.button {
+    background-color: lightgray;
+    border: black;
+    color: cornflowerblue;
+    text-align: center;
+    border-radius: 10%;
+}
+ body {
+     background-color: floralwhite;
+ }
