@@ -103,8 +103,6 @@ click_button.addEventListener("click", function () {
     video,
     0,
     0,
-    video.getBoundingClientRect().width,
-    video.getBoundingClientRect().height
   );
   ctx.fillStyle = "red";
   ctx.fillText(place.substring(0, place.search(",")), 40, 80);
@@ -153,14 +151,6 @@ function dlCanvas() {
 }
 document.querySelector("#dl").addEventListener("click", dlCanvas, false);
 
-function isCanvasEmpty(cnv) {
-  const blank = document.createElement("blank");
-
-  blank.width = 720;
-  blank.height = 480;
-
-  return cnv.toDataURL() === blank.toDataURL();
-}
 /******************************************************/
 /***************** Toggle Visibility, Display None, Display Block ***********/
 const togglevisibility = document.querySelector("#btn_visibility");
