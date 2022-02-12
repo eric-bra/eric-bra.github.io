@@ -1,11 +1,8 @@
 /****************** GPS **************************/
-let x = document.getElementById("p_geoloc");
 let place = "";
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
-  } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
 
@@ -15,55 +12,35 @@ function showPosition(position) {
     lat: position.coords.latitude,
     lng: position.coords.longitude,
   };
-  let str =
-    "Latitude: " +
-    position.coords.latitude +
-    "<br>Longitude: " +
-    position.coords.longitude;
-  console.log("test");
   geocoder
     .geocode({ location: latlng })
     .then((response) => {
-      console.log(response.results.length.toString());
       for (let j = 0; j < response.results.length; j++) {
         if (
           response.results[j].types.includes("political") &&
           response.results[j].types.includes("locality")
         ) {
-          console.log(j.toString());
-          console.log(response.results[j].formatted_address);
-          console.log(response.results[j].types);
-          str =
-            str +
-            "<br>Address " +
-            j.toString() +
-            ": " +
-            response.results[j].formatted_address;
           place = response.results[j].formatted_address;
         }
       }
       if (response.results.length === 0) {
-        str.concat("No results found");
       }
-      x.innerHTML = str;
     })
-    .catch((e) => (x.innerHTML = str.concat("Geocoder failed due to: " + e)));
-  x.innerHTML = str;
 }
 
 function showError(error) {
   switch (error.code) {
     case error.PERMISSION_DENIED:
-      x.innerHTML = "User denied the request for Geolocation.";
+      alert("User denied the request for Geolocation.");
       break;
     case error.POSITION_UNAVAILABLE:
-      x.innerHTML = "Location information is unavailable.";
+      alert("Location information is unavailable.");
       break;
     case error.TIMEOUT:
-      x.innerHTML = "The request to get user location timed out.";
+      alert("The request to get user location timed out.");
       break;
     case error.UNKNOWN_ERROR:
-      x.innerHTML = "An unknown error occurred.";
+      alert("An unknown error occurred.");
       break;
   }
 }
@@ -165,17 +142,17 @@ togglevisibility.addEventListener(
   "click",
   function () {
     // anonyme Funktion
-    btn = document.querySelector("#btn_visibility");
-    camera = document.querySelector("#camera-frame");
-    photo = document.querySelector("#photo-frame");
+    let btn = document.querySelector("#btn_visibility");
+    let camera = document.querySelector("#camera-frame");
+    let photo = document.querySelector("#photo-frame");
 
-    if (btn.innerHTML === "Show") {
-      btn.innerHTML = "Hide";
+    if (btn.innerHTML === "<span class=\"material-icons\"> collections </span>") {
+      btn.innerHTML = "<span class=\"material-icons\">photo_camera</span>";
       camera.style.display = "none";
       photo.style.display = "block";
       photo.style.visibility = "visible";
     } else {
-      btn.innerHTML = "Show";
+      btn.innerHTML = "<span class=\"material-icons\"> collections </span>";
       photo.style.display = "none";
       camera.style.display = "block";
       camera.style.visibility = "visible";

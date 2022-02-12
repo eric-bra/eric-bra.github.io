@@ -9,12 +9,18 @@
     <link rel="stylesheet" type="text/css" href="./style.css" />
   </head>
   <body>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <main class="containers">
       <div id="camera-frame" class="outer-container">
         <div id="camera" class="inner-container">
           <div id="shutter_button" class="video-overlay">
-            <button id="btn_cam">Take picture</button>
+            <button id="btn_cam">
+              <span class="material-icons">photo_camera</span>
+            </button>
           </div>
           <video id="video" autoplay muted playsinline></video>
         </div>
@@ -24,11 +30,17 @@
           <canvas id="photo_canvas"></canvas>
         </div>
       </div>
-        <div id = "buttons">
-            <button id="dl" disabled>Download</button>
-            <button id="btn_visibility" disabled>Show</button>
-            <button onclick="getLocation()">Get location</button>
-        </div>
+      <div id="buttons">
+        <button id="dl" disabled>
+          <span class="material-icons">download</span>
+        </button>
+        <button id="btn_visibility" disabled>
+          <span class="material-icons"> collections </span>
+        </button>
+        <button onclick="getLocation()">
+          <span class="material-icons"> place </span>
+        </button>
+      </div>
     </main>
     <script src="index.js" async></script>
     <script
