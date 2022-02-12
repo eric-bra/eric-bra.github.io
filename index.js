@@ -96,15 +96,15 @@ let canvas = document.querySelector("#photo_canvas");
 let bCanvas = canvas.toDataURL();
 click_button.addEventListener("click", function () {
   let ctx = canvas.getContext("2d");
-  canvas.width = video.getBoundingClientRect().width;
-  canvas.height = video.getBoundingClientRect().height;
+  canvas.width = video.getBoundingClientRect().width * 10;
+  canvas.height = video.getBoundingClientRect().height * 10;
   ctx.font = "36pt Monospace";
   ctx.drawImage(
     video,
     0,
     0,
-    video.getBoundingClientRect().width,
-    video.getBoundingClientRect().height
+    video.getBoundingClientRect().width * 10,
+    video.getBoundingClientRect().height * 10
   );
   ctx.fillStyle = "red";
   ctx.fillText(place.substring(0, place.search(",")), 40, 80);
