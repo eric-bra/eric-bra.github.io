@@ -77,7 +77,7 @@ click_button.addEventListener("click", function () {
   let ctx = canvas.getContext("2d");
   canvas.width = video.getBoundingClientRect().width;
   canvas.height = video.getBoundingClientRect().height;
-  ctx.font = "36pt Monospace";
+  ctx.font = "36pt 'Amatic SC'";
   ctx.drawImage(
     video,
     0,

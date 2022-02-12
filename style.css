@@ -27,3 +27,8 @@ canvas {
 #photo-frame {
     display: none;
 }
+
+h1 {
+    font-family: 'Amatic SC', cursive;
+    text-align: center;
+}
