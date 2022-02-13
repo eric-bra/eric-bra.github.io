@@ -244,3 +244,10 @@ camSwitch.addEventListener(
     })
   }
 )
+
+let supportsOrientationChange = "onorientationchange" in window,
+    orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+
+window.addEventListener(orientationEvent, function() {
+  showLocation();
+}, false);
