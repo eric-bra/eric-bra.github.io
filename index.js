@@ -77,6 +77,7 @@ navigator.mediaDevices
   .getUserMedia(constraints)
   .then((stream) => {
     video.srcObject = stream;
+    getLocation();
     showLocation();
   })
   .catch((e) => {
@@ -94,7 +95,7 @@ click_button.addEventListener("click", function () {
   let ctx = canvas.getContext("2d");
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
-  let fontsize = video.videoWidth/35;
+  let fontsize = Math.max(video.videoWidth, video.videoHeight)/35;
   ctx.font = fontsize + "pt 'Amatic SC'";
   console.log(video.videoWidth);
   ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
