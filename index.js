@@ -75,15 +75,15 @@ let dl_button = document.querySelector("#dl");
 let show_button = document.querySelector("#btn_visibility");
 click_button.addEventListener("click", function () {
   let ctx = canvas.getContext("2d");
-  canvas.width = video.getBoundingClientRect().width;
-  canvas.height = video.getBoundingClientRect().height;
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
   ctx.font = "36pt 'Amatic SC'";
   ctx.drawImage(
     video,
     0,
     0,
-    video.getBoundingClientRect().width,
-    video.getBoundingClientRect().height
+    video.videoWidth,
+    video.videoHeight
   );
   ctx.fillStyle = "red";
   ctx.fillText(place.substring(0, place.search(",")), 40, 80, video.getBoundingClientRect().width - 80);
