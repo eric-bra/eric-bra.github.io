@@ -44,6 +44,16 @@ h1 {
     border-radius: 10%;
     margin: 3px;
 }
+
+#colorpicker {
+    width: 24pt;
+    height: 24pt;
+}
+
+#sizeselector {
+    width: 36pt;
+    height: 24pt;
+}
 .button:active {
     background-color: gray;
 }

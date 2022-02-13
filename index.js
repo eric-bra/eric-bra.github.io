@@ -1,3 +1,10 @@
+let colorpicker = document.querySelector("#colorpicker");
+let color = colorpicker.value;
+colorpicker.addEventListener("input", function () {
+  let colorpicker = document.querySelector("#colorpicker");
+  color = colorpicker.value;
+  showLocation();
+});
 /****************** GPS **************************/
 let place = "";
 function getLocation() {
@@ -51,12 +58,20 @@ function showLocation() {
   overlay.height = vid.videoHeight;
   otx.fillStyle = "#00000000";
   otx.fillRect(0, 0, vid.videoWidth, vid.videoHeight);
-  otx.font = "36pt 'Amatic SC'";
-  otx.fillStyle = "red";
+  otx.font = fontsize + "pt 'Amatic SC'";
+  otx.fillStyle = color;
+  let gl = Math.round(video.videoWidth / 32);
+  let date = new Date();
   otx.fillText(
     place.substring(0, place.search(",")),
-    40,
-    80,
+    gl,
+    20 + Math.round(fontsize),
+    video.videoWidth - 80
+  );
+  otx.fillText(
+    date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear(),
+    gl,
+    video.videoHeight - 20,
     video.videoWidth - 80
   );
 }
@@ -80,10 +95,9 @@ navigator.mediaDevices
     getLocation();
     showLocation();
   })
-  .catch((e) => {
+  .catch(() => {
     document.querySelector("#camera").innerHTML =
       "<p>Kamera nicht benutzbar!</p>";
-    console.log(e);
   });
 
 let click_button = document.querySelector("#btn-cam");
@@ -91,24 +105,33 @@ let canvas = document.querySelector("#photo_canvas");
 let bCanvas = canvas.toDataURL();
 let dl_button = document.querySelector("#dl");
 let show_button = document.querySelector("#btn_visibility");
+let fontin = document.querySelector("#sizeselector");
+let fontsize = fontin.value;
+fontin.setAttribute("value", fontsize.toString());
+fontin.addEventListener("input", function () {
+  fontsize = fontin.value;
+  showLocation();
+});
 click_button.addEventListener("click", function () {
   let ctx = canvas.getContext("2d");
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
-  let fontsize = Math.round(Math.max(video.videoWidth, video.videoHeight) / 35);
   ctx.font = fontsize + "pt 'Amatic SC'";
-  console.log(ctx.font);
-  console.log(Math.round(video.videoWidth / 35));
   ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-  ctx.fillStyle = "red";
+  ctx.fillStyle = color;
   let gl = Math.round(video.videoWidth / 32);
-  let gt = Math.round(video.videoHeight / 9);
-  console.log(gt);
   ctx.fillText(
     place.substring(0, place.search(",")),
     gl,
-    gt,
+    20 + Math.round(fontsize),
     video.videoWidth - 80
+  );
+  let date = new Date();
+  ctx.fillText(
+      date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear(),
+      gl,
+      video.videoHeight - 20,
+      video.videoWidth - 80
   );
   show_button.disabled = false;
   dl_button.disabled = false;
