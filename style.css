@@ -9,7 +9,7 @@
     position: relative;
 }
 .video-overlay {
-    z-index: 2;
+    z-index: 3;
     position: absolute;
     top: 92%;
     left: 50%;
@@ -59,4 +59,10 @@ h1 {
  #buttons {
      display: flex;
      justify-content: center;
+ }
+ #location-text {
+     z-index: 2;
+     position: absolute;
+     top: 0;
+     left: 0;
  }

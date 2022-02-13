@@ -12,22 +12,20 @@ function showPosition(position) {
     lat: position.coords.latitude,
     lng: position.coords.longitude,
   };
-  geocoder
-    .geocode({ location: latlng })
-    .then((response) => {
-      for (let j = 0; j < response.results.length; j++) {
-        if (
-          response.results[j].types.includes("political") &&
-          response.results[j].types.includes("locality")
-        ) {
-          place = response.results[j].formatted_address;
-        }
+  geocoder.geocode({ location: latlng }).then((response) => {
+    for (let j = 0; j < response.results.length; j++) {
+      if (
+        response.results[j].types.includes("political") &&
+        response.results[j].types.includes("locality")
+      ) {
+        place = response.results[j].formatted_address;
       }
-      if (response.results.length === 0) {
-      }
-    })
+    }
+    if (response.results.length === 0) {
+    }
+    showLocation();
+  });
 }
-
 function showError(error) {
   switch (error.code) {
     case error.PERMISSION_DENIED:
@@ -44,6 +42,24 @@ function showError(error) {
       break;
   }
 }
+
+function showLocation() {
+  let vid = document.querySelector("#video");
+  let overlay = document.querySelector("#text-overlay");
+  let otx = overlay.getContext("2d");
+  overlay.width = vid.videoWidth;
+  overlay.height = vid.videoHeight;
+  otx.fillStyle = "#00000000";
+  otx.fillRect(0, 0, vid.videoWidth, vid.videoHeight);
+  otx.font = "36pt 'Amatic SC'";
+  otx.fillStyle = "red";
+  otx.fillText(
+    place.substring(0, place.search(",")),
+    40,
+    80,
+    video.videoWidth - 80
+  );
+}
 /******************************************************/
 /****************** Kamera **************************/
 const video = document.querySelector("#video");
@@ -54,13 +70,14 @@ let constraints = {
   video: {
     width: { ideal: 99999 },
     height: { ideal: 99999 },
-    facingMode: 'environment',
+    facingMode: "environment",
   },
 };
 navigator.mediaDevices
   .getUserMedia(constraints)
   .then((stream) => {
     video.srcObject = stream;
+    showLocation();
   })
   .catch((e) => {
     document.querySelector("#camera").innerHTML =
@@ -68,7 +85,7 @@ navigator.mediaDevices
     console.log(e);
   });
 
-let click_button = document.querySelector("#btn_cam");
+let click_button = document.querySelector("#btn-cam");
 let canvas = document.querySelector("#photo_canvas");
 let bCanvas = canvas.toDataURL();
 let dl_button = document.querySelector("#dl");
@@ -78,15 +95,14 @@ click_button.addEventListener("click", function () {
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
   ctx.font = "36pt 'Amatic SC'";
-  ctx.drawImage(
-    video,
-    0,
-    0,
-    video.videoWidth,
-    video.videoHeight
-  );
+  ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
   ctx.fillStyle = "red";
-  ctx.fillText(place.substring(0, place.search(",")), 40, 80, video.getBoundingClientRect().width - 80);
+  ctx.fillText(
+    place.substring(0, place.search(",")),
+    40,
+    80,
+    video.videoWidth - 80
+  );
   show_button.disabled = false;
   dl_button.disabled = false;
 });
@@ -102,9 +118,6 @@ function dlCanvas() {
   if (canvas.toDataURL() === bCanvas) {
     alert("No photo taken!");
   } else {
-    /// convert canvas content to data-uri for link. When download
-    /// attribute is set the content pointed to by link will be
-    /// pushed as "download" in HTML5 capable browsers
     lnk.href = canvas.toDataURL("image/png;base64");
 
     /// create a "fake" click-event to trigger the download
@@ -146,13 +159,13 @@ togglevisibility.addEventListener(
     let camera = document.querySelector("#camera-frame");
     let photo = document.querySelector("#photo-frame");
 
-    if (btn.innerHTML === "<span class=\"material-icons\"> collections </span>") {
-      btn.innerHTML = "<span class=\"material-icons\">photo_camera</span>";
+    if (btn.innerHTML === '<span class="material-icons"> collections </span>') {
+      btn.innerHTML = '<span class="material-icons">photo_camera</span>';
       camera.style.display = "none";
       photo.style.display = "block";
       photo.style.visibility = "visible";
     } else {
-      btn.innerHTML = "<span class=\"material-icons\"> collections </span>";
+      btn.innerHTML = '<span class="material-icons"> collections </span>';
       photo.style.display = "none";
       camera.style.display = "block";
       camera.style.visibility = "visible";
