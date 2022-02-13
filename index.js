@@ -92,6 +92,7 @@ navigator.mediaDevices
   .getUserMedia(constraints)
   .then((stream) => {
     video.srcObject = stream;
+    currentStream = stream;
     getLocation();
     showLocation();
   })
@@ -128,10 +129,10 @@ click_button.addEventListener("click", function () {
   );
   let date = new Date();
   ctx.fillText(
-      date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear(),
-      gl,
-      video.videoHeight - 20,
-      video.videoWidth - 80
+    date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear(),
+    gl,
+    video.videoHeight - 20,
+    video.videoWidth - 80
   );
   show_button.disabled = false;
   dl_button.disabled = false;
@@ -204,3 +205,42 @@ togglevisibility.addEventListener(
   true
 );
 /****************************************************************************/
+
+let currentStream;
+let videoConstraints = {
+  width: { ideal: 99999 },
+  height: { ideal: 99999 },
+  facingMode: "environment",
+};
+
+let camSwitch = document.querySelector("#flip-cam");
+
+function stopMediaTracks(stream) {
+  stream.getTracks().forEach((track) => {
+    track.stop();
+  });
+}
+
+camSwitch.addEventListener(
+  "click",
+  () => {
+    if (typeof currentStream !== "undefined") {
+      stopMediaTracks(currentStream);
+    }
+    if (videoConstraints.facingMode === "environment") {
+      videoConstraints.facingMode = "user";
+    } else {
+      videoConstraints.facingMode = "environment";
+    }
+    constraints.video = videoConstraints;
+  navigator.mediaDevices
+    .getUserMedia(constraints)
+    .then((stream) => {
+      currentStream = stream;
+      video.srcObject = stream;
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+  }
+)

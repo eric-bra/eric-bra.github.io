@@ -13,16 +13,19 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <h1>Memory Saver</h1>
     <main class="containers">
       <div id="camera-frame" class="outer-container">
         <div id="camera" class="inner-container">
           <div id="shutter_button" class="video-overlay">
-            <button class = "button" id="btn-cam">
+            <button class="button" id="btn-cam">
               <span class="material-icons">photo_camera</span>
             </button>
           </div>
@@ -39,17 +42,22 @@
         </div>
       </div>
       <div id="buttons">
+        <button class="button" id="flip-cam">
+          <span class="material-icons"> cameraswitch </span>
+        </button>
         <button class="button" id="dl" disabled>
           <span class="material-icons">download</span>
         </button>
         <button class="button" id="btn_visibility" disabled>
           <span class="material-icons"> collections </span>
         </button>
-        <button class="button" id = "location" onclick="getLocation()">
+        <button class="button" id="location" onclick="getLocation()">
           <span class="material-icons"> place </span>
         </button>
-        <label for="colorpicker"></label><input class = "button" type="color" id="colorpicker" value="#0000ff">
-        <label for="sizeselector"></label><input class="button" type="number" id="sizeselector" value="100">
+        <label for="colorpicker"></label
+        ><input class="button" type="color" id="colorpicker" value="#0000ff" />
+        <label for="sizeselector"></label
+        ><input class="button" type="number" id="sizeselector" value="100" />
       </div>
     </main>
     <script src="index.js" async></script>
