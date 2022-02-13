@@ -97,7 +97,8 @@ click_button.addEventListener("click", function () {
   canvas.height = video.videoHeight;
   let fontsize = Math.max(video.videoWidth, video.videoHeight)/35;
   ctx.font = fontsize + "pt 'Amatic SC'";
-  console.log(video.videoWidth);
+  console.log(fontsize);
+  console.log(video.videoWidth/35);
   ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
   ctx.fillStyle = "red";
   ctx.fillText(
