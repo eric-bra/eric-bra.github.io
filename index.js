@@ -95,16 +95,19 @@ click_button.addEventListener("click", function () {
   let ctx = canvas.getContext("2d");
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
-  let fontsize =Math.round( Math.max(video.videoWidth, video.videoHeight)/35);
+  let fontsize = Math.round(Math.max(video.videoWidth, video.videoHeight) / 35);
   ctx.font = fontsize + "pt 'Amatic SC'";
   console.log(ctx.font);
-  console.log(Math.round(video.videoWidth/35));
+  console.log(Math.round(video.videoWidth / 35));
   ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
   ctx.fillStyle = "red";
+  let gl = Math.round(video.videoWidth / 32);
+  let gt = Math.round(video.videoHeight / 9);
+  console.log(gt);
   ctx.fillText(
     place.substring(0, place.search(",")),
-    40,
-    80,
+    gl,
+    gt,
     video.videoWidth - 80
   );
   show_button.disabled = false;
