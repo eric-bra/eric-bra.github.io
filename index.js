@@ -224,7 +224,6 @@ function stopMediaTracks(stream) {
 camSwitch.addEventListener(
   "click",
   () => {
-    document.querySelector("#text-overlay").visibilty = "hidden";
     if (typeof currentStream !== "undefined") {
       stopMediaTracks(currentStream);
     }
@@ -243,7 +242,6 @@ camSwitch.addEventListener(
     .catch((error) => {
       console.error(error);
     })
-    document.querySelector("#text-overlay").visibilty = "visible";
   }
 )
 
