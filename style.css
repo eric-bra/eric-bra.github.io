@@ -79,13 +79,13 @@ body {
         font-size: 10pt !important;
     }
     #colorpicker {
-        width: 12pt;
-        height: 12pt;
+        width: 12pt!important;
+        height: 12pt!important;
     }
 
     #sizeselector {
-        width: 36pt;
-        height: 12pt;
+        width: 36pt!important;
+        height: 12pt!important;
     }
 }
 @media (min-height: 1500px) {
