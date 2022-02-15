@@ -69,7 +69,7 @@ function showLocation() {
     video.videoWidth - 80
   );
   otx.fillText(
-    date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear(),
+    "23.1.2022",
     gl,
     video.videoHeight - 20,
     video.videoWidth - 80
