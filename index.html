@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory Saver</title>
+    <link rel="icon" type="image/png" href="icon.png">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link rel="stylesheet" type="text/css" href="./style.css" />
   </head>
@@ -20,8 +21,10 @@
       rel="stylesheet"
     />
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <h1>Memory Saver</h1>
-    <main class="containers" id="main">
+    <header>
+      <h1>Memory Saver</h1>
+    </header>
+    <main id="main">
       <div id="camera-frame" class="outer-container">
         <div id="camera" class="inner-container">
           <div id="shutter_button" class="video-overlay">
@@ -32,7 +35,6 @@
           <div id="location-text">
             <canvas id="text-overlay"></canvas>
           </div>
-
           <video id="video" autoplay muted playsinline></video>
         </div>
       </div>

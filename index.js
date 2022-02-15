@@ -79,7 +79,6 @@ function showLocation() {
 /****************** Kamera **************************/
 const video = document.querySelector("#video");
 
-// Ensure cross-browser functionality.
 let constraints = {
   audio: false,
   video: {
@@ -224,6 +223,8 @@ function stopMediaTracks(stream) {
 camSwitch.addEventListener(
   "click",
   () => {
+    let tbh = document.querySelector("#camera-frame");
+    tbh.style.visibility = "hidden";
     if (typeof currentStream !== "undefined") {
       stopMediaTracks(currentStream);
     }
@@ -242,6 +243,8 @@ camSwitch.addEventListener(
     .catch((error) => {
       console.error(error);
     })
+    let delayInMilliseconds = 1200;
+    setTimeout(() => {tbh.style.visibility="visible"}, delayInMilliseconds);
   }
 )
 
