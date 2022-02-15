@@ -180,6 +180,7 @@ document.querySelector("#dl").addEventListener("click", dlCanvas, false);
 /******************************************************/
 /***************** Toggle Visibility, Display None, Display Block ***********/
 const togglevisibility = document.querySelector("#btn_visibility");
+togglevisibility.innerHTML = '<span class="material-icons"> collections </span>';
 /* Klick Event Listener hinzufügen */
 togglevisibility.addEventListener(
   "click",
@@ -190,11 +191,13 @@ togglevisibility.addEventListener(
     let photo = document.querySelector("#photo-frame");
 
     if (btn.innerHTML === '<span class="material-icons"> collections </span>') {
+      console.log("if");
       btn.innerHTML = '<span class="material-icons">photo_camera</span>';
       camera.style.display = "none";
       photo.style.display = "block";
       photo.style.visibility = "visible";
     } else {
+      console.log("else");
       btn.innerHTML = '<span class="material-icons"> collections </span>';
       photo.style.display = "none";
       camera.style.display = "block";
