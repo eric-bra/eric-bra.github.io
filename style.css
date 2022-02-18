@@ -95,8 +95,8 @@ body {
         transform: scale(2);
         margin: 24px;
     }
-
 }
+
  #buttons {
      display: flex;
      justify-content: center;

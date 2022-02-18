@@ -69,7 +69,7 @@ function showLocation() {
     video.videoWidth - 80
   );
   otx.fillText(
-    "23.1.2022",
+    date.getDate() + "." + date.getMonth() + "." + date.getFullYear(),
     gl,
     video.videoHeight - 20,
     video.videoWidth - 80
@@ -128,7 +128,7 @@ click_button.addEventListener("click", function () {
   );
   let date = new Date();
   ctx.fillText(
-      "23.1.2022",
+    date.getDate() + "." + date.getMonth() + "." + date.getFullYear(),
     gl,
     video.videoHeight - 20,
     video.videoWidth - 80
@@ -139,8 +139,7 @@ click_button.addEventListener("click", function () {
 
 function dlCanvas() {
   /// create an "off-screen" anchor tag
-  let lnk = document.createElement("a"),
-    e;
+  let lnk = document.createElement("a");
 
   /// the key here is to set the download attribute of the a tag
   lnk.download = "image.png";
@@ -151,14 +150,14 @@ function dlCanvas() {
     let image = canvas.toDataURL();
 
     // create temporary link
-    let tmpLink = document.createElement( 'a' );
-    tmpLink.download = 'image.png'; // set the name of the download file
+    let tmpLink = document.createElement("a");
+    tmpLink.download = "image.png"; // set the name of the download file
     tmpLink.href = image;
 
     // temporarily add link to body and initiate the download
-    document.body.appendChild( tmpLink );
+    document.body.appendChild(tmpLink);
     tmpLink.click();
-    document.body.removeChild( tmpLink );
+    document.body.removeChild(tmpLink);
   }
 }
 document.querySelector("#dl").addEventListener("click", dlCanvas, false);
@@ -166,12 +165,12 @@ document.querySelector("#dl").addEventListener("click", dlCanvas, false);
 /******************************************************/
 /***************** Toggle Visibility, Display None, Display Block ***********/
 const togglevisibility = document.querySelector("#btn_visibility");
-togglevisibility.innerHTML = '<span class="material-icons"> collections </span>';
+togglevisibility.innerHTML =
+  '<span class="material-icons"> collections </span>';
 /* Klick Event Listener hinzufügen */
 togglevisibility.addEventListener(
   "click",
   function () {
-    // anonyme Funktion
     let btn = document.querySelector("#btn_visibility");
     let camera = document.querySelector("#camera-frame");
     let photo = document.querySelector("#photo-frame");
@@ -209,20 +208,18 @@ function stopMediaTracks(stream) {
   });
 }
 
-camSwitch.addEventListener(
-  "click",
-  () => {
-    let tbh = document.querySelector("#camera-frame");
-    tbh.style.visibility = "hidden";
-    if (typeof currentStream !== "undefined") {
-      stopMediaTracks(currentStream);
-    }
-    if (videoConstraints.facingMode === "environment") {
-      videoConstraints.facingMode = "user";
-    } else {
-      videoConstraints.facingMode = "environment";
-    }
-    constraints.video = videoConstraints;
+camSwitch.addEventListener("click", () => {
+  let tbh = document.querySelector("#camera-frame");
+  tbh.style.visibility = "hidden";
+  if (typeof currentStream !== "undefined") {
+    stopMediaTracks(currentStream);
+  }
+  if (videoConstraints.facingMode === "environment") {
+    videoConstraints.facingMode = "user";
+  } else {
+    videoConstraints.facingMode = "environment";
+  }
+  constraints.video = videoConstraints;
   navigator.mediaDevices
     .getUserMedia(constraints)
     .then((stream) => {
@@ -231,17 +228,22 @@ camSwitch.addEventListener(
     })
     .catch((error) => {
       console.error(error);
-    })
-    let delayInMilliseconds = 1200;
-    setTimeout(() => {tbh.style.visibility="visible"}, delayInMilliseconds);
-  }
-)
+    });
+  let delayInMilliseconds = 1200;
+  setTimeout(() => {
+    tbh.style.visibility = "visible";
+  }, delayInMilliseconds);
+});
 
 let supportsOrientationChange = "onorientationchange" in window,
-    orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+  orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
 
-window.addEventListener(orientationEvent, function() {
-  let delayInMilliseconds = 100;
-  setTimeout(showLocation, delayInMilliseconds);
-  showLocation();
-}, true);
+window.addEventListener(
+  orientationEvent,
+  function () {
+    let delayInMilliseconds = 100;
+    setTimeout(showLocation, delayInMilliseconds);
+    showLocation();
+  },
+  true
+);
